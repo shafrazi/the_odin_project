@@ -1,15 +1,18 @@
 dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
 
-def substrings(string, dictionary)
-  string = string.downcase!
-  dictionary = dictionary.each {|word| word.downcase! }
+def substrings(str, dictionary)
+  str_arr = str.downcase.scan(/\w+/)
   hash = {}
+  dictionary = dictionary.each {|word| word.downcase! }
 
-  dictionary.each do |word|
+  str_arr.each do |string|
     count = 0
-    if string.gsub!(word, word) == string
-      count += 1
-      hash[word] = count
+    dictionary.each do |word|
+      # count = 0
+      if string.gsub!(word, word) == string
+        count += 1
+        hash[word] = count
+      end
     end
   end
 
@@ -17,4 +20,6 @@ def substrings(string, dictionary)
   #code
 end
 
-substrings("Below", dictionary)
+substrings("Howdy partner, sit down! How's it going?", dictionary)
+
+# p words.scan(/\w+/)
