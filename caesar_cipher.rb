@@ -17,8 +17,8 @@ def caesar_cipher(string, shift)
         new_array << n.chr
       else
         new_array << letter
-      end
     end
+  end
     new_array.join("")
 end
 
