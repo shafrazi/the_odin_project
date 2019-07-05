@@ -72,6 +72,13 @@ module Enumerable
     end
     new_array
   end
+
+  def my_inject(value = 0)
+    self.my_each do |result = value, i|
+      value = yield(result, i)
+    end
+    value
+  end
 end
 
 array = [1, 2, 3, 4, 5, 6, 7]
@@ -94,3 +101,11 @@ p array.my_none? {|item| item > 8 }
 p array.my_count {|item| item > 2 }
 
 p array.my_map {|item| item ** 2 }
+
+p array.my_inject(1) { |sum, item| sum * item }
+
+def multiply_els(arr)
+  arr.my_inject(1) {|sum, i| sum * i}
+end
+
+p multiply_els([2, 4, 5])
