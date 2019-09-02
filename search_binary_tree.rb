@@ -84,6 +84,7 @@ class BinaryTree
       end
       i += 1
     end
+    return nil
   end
 end
 
