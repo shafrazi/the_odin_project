@@ -10,36 +10,6 @@ class Node
   end
 end
 
-def build_tree(array)
-  root_node = Node.new(array[0])
-  i = 1
-  while i < array.length
-    node = Node.new(array[i])
-    current_node = root_node
-    while !node.parent_node
-      if node.value > current_node.value
-        if !current_node.right_child
-          current_node.right_child = node
-          node.parent_node = current_node
-        else
-          current_node = current_node.right_child
-        end
-      else
-        if !current_node.left_child
-          current_node.left_child = node
-          node.parent_node = current_node
-        else
-          current_node = current_node.left_child
-        end
-      end
-    end
-    i += 1
-  end
-  root_node
-end
-
-# p build_tree(array).right_child.right_child.left_child.value
-
 class BinaryTree
   attr_accessor :size, :root
   def initialize
@@ -48,6 +18,7 @@ class BinaryTree
   end
 
   def build_tree(array)
+    @size = array.length
     @root = Node.new(array[0])
     i = 1
     while i < array.length
@@ -86,3 +57,4 @@ end
 binary_tree = BinaryTree.new
 binary_tree.build_tree(array)
 p binary_tree.root.right_child.value
+p binary_tree.size
