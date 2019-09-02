@@ -46,7 +46,24 @@ class BinaryTree
   end
 
   def breadth_first_search(target)
-    
+    queue = []
+    i = 0
+    current_node = @root
+    while i < self.size
+      if current_node.value == target
+        return current_node
+      else
+        if current_node.left_child
+          queue.push(current_node.left_child)
+        end
+        if current_node.right_child
+          queue.push(current_node.right_child)
+        end
+        current_node = queue.shift
+      end
+      i += 1
+    end
+    return nil
   end
 
   def depth_first_search(target)
@@ -56,5 +73,4 @@ end
 
 binary_tree = BinaryTree.new
 binary_tree.build_tree(array)
-p binary_tree.root.right_child.value
-p binary_tree.size
+p binary_tree.breadth_first_search(1)
