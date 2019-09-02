@@ -67,10 +67,27 @@ class BinaryTree
   end
 
   def depth_first_search(target)
-    
+    stack = []
+    i = 0
+    current_node = @root
+    while i < self.size
+      if current_node.value == target
+        return current_node
+      else
+        if current_node.right_child
+          stack.push(current_node.right_child)
+        end
+        if current_node.left_child
+          stack.push(current_node.left_child)
+        end
+        current_node = stack.pop
+      end
+      i += 1
+    end
   end
 end
 
 binary_tree = BinaryTree.new
 binary_tree.build_tree(array)
-p binary_tree.breadth_first_search(1)
+# p binary_tree.breadth_first_search(1)
+p binary_tree.depth_first_search(1)
