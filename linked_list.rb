@@ -70,6 +70,21 @@ class LinkedList
     return nil
   end
 
+  def insert_at(node, index)
+    shift_node = self.at(index)
+    previous_node = self.at(index-1)
+    previous_node.next_node = node
+    node.next_node = shift_node
+    self.size += 1
+  end
+
+  def remove_at(index)
+    previous_node = self.at(index-1)
+    next_node = self.at(index+1)
+    previous_node.next_node = next_node
+    self.size -= 1
+  end
+
   def to_s
     array = []
     i = 0
@@ -94,6 +109,7 @@ node1 = Node.new(1)
 node2 = Node.new(2)
 node0 = Node.new(0)
 node3 = Node.new(3)
+node4 = Node.new(4)
 
 linked_list = LinkedList.new
 linked_list.append(node1)
@@ -104,13 +120,16 @@ puts "value of head: #{linked_list.head.value}"
 puts "value of tail: #{linked_list.tail.value}"
 # p linked_list.tail.next_node
 linked_list.append(node3)
-p linked_list.contains?(2)
-p linked_list.find(2)
+linked_list.insert_at(node4, 2)
+
 
 puts "size of list is #{linked_list.size}"
 puts "value of head: #{linked_list.head.value}"
 puts "value of tail: #{linked_list.tail.value}"
 
+linked_list.to_s
+
+linked_list.remove_at(2)
 linked_list.to_s
 
 
