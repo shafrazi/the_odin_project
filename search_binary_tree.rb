@@ -86,9 +86,23 @@ class BinaryTree
     end
     return nil
   end
+
+  def dfs_rec(target, current_node = @root)
+    if current_node.value == target
+      return current_node
+    else
+      if current_node.left_child
+        dfs_rec(target, current_node.left_child)
+      end
+      if current_node.right_child
+        dfs_rec(target, current_node.right_child)
+      end
+    end
+  end
 end
 
 binary_tree = BinaryTree.new
 binary_tree.build_tree(array)
 # p binary_tree.breadth_first_search(1)
-p binary_tree.depth_first_search(1)
+# p binary_tree.depth_first_search(1)
+p binary_tree.dfs_rec(4)
