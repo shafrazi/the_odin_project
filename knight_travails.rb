@@ -21,6 +21,7 @@ class Knight
       i += 1
     end
     new_array = new_array + new_array.map { |i| i.reverse }
+    new_array.uniq
   end
 
   def change_cells(x, y)
@@ -38,7 +39,36 @@ class Knight
 
     [array_x, array_y]
   end
+
+  def build_tree(root_cell)
+    root = Cell.new(root_cell)
+    current_cell = nil
+    queue = [root]
+    cells = [root_cell]
+    while !queue.empty?
+      current_cell = queue.shift
+      possible_moves(current_cell.value).each do |i|
+        if !cells.include?(i)
+          child_cell = Cell.new(i)
+          queue.push(child_cell)
+          cells.push(i)
+        end
+      end
+    end
+    cells
+  end
+end
+
+class Cell
+  attr_accessor :parent_node, :children, :value
+
+  def initialize(value_array)
+    @value = value_array
+    @parent_node = nil
+    @children = []
+  end
 end
 
 knight = Knight.new
-p knight.possible_moves([3, 3])
+p knight.possible_moves([0, 0])
+p knight.build_tree([0, 0])

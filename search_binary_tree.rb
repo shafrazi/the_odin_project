@@ -2,6 +2,7 @@ array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
 
 class Node
   attr_accessor :parent_node, :left_child, :right_child, :value
+
   def initialize(value)
     @value = value
     @parent_node = nil
@@ -12,6 +13,7 @@ end
 
 class BinaryTree
   attr_accessor :size, :root
+
   def initialize
     @root = nil
     @size = 0
