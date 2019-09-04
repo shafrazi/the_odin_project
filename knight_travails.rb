@@ -55,7 +55,7 @@ class Knight
         end
       end
     end
-    cells
+    cells.length
   end
 end
 
@@ -71,4 +71,4 @@ end
 
 knight = Knight.new
 p knight.possible_moves([0, 0])
-p knight.build_tree([0, 0])
+p knight.build_tree([3, 3])
