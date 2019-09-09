@@ -14,16 +14,16 @@ def caesar_cipher(string, shift)
           n = ((letter.ord + shift) - 122) + 96
         end
       end
-        new_array << n.chr
-      else
-        new_array << letter
+      new_array << n.chr
+    else
+      new_array << letter
     end
   end
-    new_array.join("")
+  new_array.join("")
 end
 
-puts "Enter the message you need to cipher:"
-string = gets.chomp
-puts "Enter the shift value:"
-shift = gets.chomp.to_i
-puts caesar_cipher(string, shift)
+# puts "Enter the message you need to cipher:"
+# string = gets.chomp
+# puts "Enter the shift value:"
+# shift = gets.chomp.to_i
+# puts caesar_cipher(string, shift)
