@@ -7,6 +7,12 @@ module Enumerable
     end
   end
 
+  def my_each_method
+    for i in self
+      yield(i)
+    end
+  end
+
   def my_each_with_index
     i = 0
     while i < self.length
@@ -80,32 +86,3 @@ module Enumerable
     value
   end
 end
-
-array = [1, 2, 3, 4, 5, 6, 7]
-
-
-array.my_each do |element|
-  puts element * 2
-end
-
-array.my_each_with_index {|num, i| puts "index of #{num} is #{i}"}
-
-p array.my_select {|element| element > 3}
-
-p array.my_all? {|item| item > 0 }
-
-p array.my_any? {|item| item == 8 }
-
-p array.my_none? {|item| item > 8 }
-
-p array.my_count {|item| item > 2 }
-
-p array.my_map {|item| item ** 2 }
-
-p array.my_inject(1) { |sum, item| sum * item }
-
-def multiply_els(arr)
-  arr.my_inject(1) {|sum, i| sum * i}
-end
-
-p multiply_els([2, 4, 5])
