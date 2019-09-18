@@ -7,36 +7,26 @@ class Board
 end
 
 class Knight
-  def possible_moves(array)
-    x = array[0]
-    y = array[1]
-    array = change_cells(x, y)
-    new_array = []
-    i = 0
-    while i < array[0].length
-      new_array.push([array[0][i], array[1][0]])
-      if array[1][1]
-        new_array.push([array[0][i], array[1][1]])
-      end
-      i += 1
-    end
-    new_array = new_array + new_array.map { |i| i.reverse }
-    new_array.uniq
-  end
-
   def change_cells(x, y)
     array_x = []
     x1 = x + 2
     x2 = x - 2
+    x3 = x + 1
+    x4 = x - 1
     array_x.push(x1) if x1 <= 7
     array_x.push(x2) if x2 >= 0
+    array_x.push(x3) if x3 <= 7
+    array_x.push(x4) if x4 >= 0
 
     array_y = []
     y1 = y + 1
     y2 = y - 1
+    y3 = y + 2
+    y4 = y - 2
     array_y.push(y1) if y1 <= 7
     array_y.push(y2) if y2 >= 0
-
+    array_y.push(y3) if y3 <= 7
+    array_y.push(y4) if y4 >= 0
     [array_x, array_y]
   end
 
@@ -94,6 +84,14 @@ class Knight
     end
     ancestors
   end
+
+  def possible_moves(location_array)
+    x = location_array[0]
+    y = location_array[1]
+    array = change_cells(x, y)
+    new_array = array[0].product(array[1])
+    new_array.select { |arr| (arr[0] + arr[1]).odd? }
+  end
 end
 
 class Cell
@@ -109,6 +107,3 @@ class Cell
     "#{value}"
   end
 end
-
-knight = Knight.new
-p knight.knight_moves([0, 0], [7, 7])
