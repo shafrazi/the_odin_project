@@ -1,0 +1,24 @@
+h1 {
+  text-align: center;
+}
+
+#newBookForm {
+  display: none;
+  margin-top: 20px;
+}
+
+.book-list {
+  list-style: none;
+}
+
+#addNewBook {
+  margin-bottom: 10px;
+}
+
+#books {
+  margin-top: 20px;
+}
+
+.card {
+  margin-bottom: 15px;
+}
